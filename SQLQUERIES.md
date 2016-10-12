@@ -7,7 +7,7 @@
 SELECT Customer.FirstName || " " || Customer.LastName AS Name, Customer.CustomerId, Customer.Country FROM Customer
 WHERE Customer.Country IS NOT "USA"
 ORDER BY Customer.Country, Customer.CustomerId ASC;
-```
+```id
 
 1. Provide a query only showing the Customers from Brazil. <!-- Tested with Customer.Country first  -->
 ```
@@ -18,7 +18,10 @@ ORDER BY Name ASC;
 
 1. Provide a query showing the Invoices of customers who are from Brazil. The resultant table should show the customer's full name, Invoice ID, Date of the invoice and billing country.  
 ``` 
-
+SELECT Customer.FirstName || " " || Customer.LastName AS Name, Invoice.InvoiceId, Invoice.InvoiceDate, Invoice.BillingCountry FROM Customer
+JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
+WHERE Customer.Country IS "Brazil"
+ORDER BY Invoice.InvoiceDate ASC;
 ```
 
 1. Provide a query showing only the Employees who are Sales Agents.  
