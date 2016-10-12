@@ -33,7 +33,8 @@ ORDER BY Name DESC;
 
 1. Provide a query showing a unique list of billing countries from the Invoice table.  
 ```
-
+SELECT Invoice.BillingCountry FROM Invoice
+GROUP BY Invoice.BillingCountry;
 ```
 
 1. Provide a query showing the invoices of customers who are from Brazil.  
