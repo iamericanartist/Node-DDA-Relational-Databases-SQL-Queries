@@ -8,6 +8,7 @@ SELECT Customer.FirstName || " " || Customer.LastName AS Name, Customer.Customer
 WHERE Customer.Country IS NOT "USA"
 ORDER BY Customer.Country, Customer.CustomerId ASC;
 ```id
+46 rows returned / 3 cols
 
 1. Provide a query only showing the Customers from Brazil.            <!-- Tested with Customer.Country first  -->
 ```
@@ -15,6 +16,7 @@ SELECT Customer.FirstName || " " || Customer.LastName AS Name FROM Customer
 WHERE Customer.Country IS "Brazil"
 ORDER BY Name ASC;
 ```
+5 rows returned / 1 col
 
 1. Provide a query showing the Invoices of customers who are from Brazil. The resultant table should show the customer's full name, Invoice ID, Date of the invoice and billing country.  
 ``` 
@@ -23,6 +25,7 @@ JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
 WHERE Customer.Country IS "Brazil"
 ORDER BY Invoice.InvoiceDate ASC;
 ```
+35 rows returned / 4 cols
 
 1. Provide a query showing only the Employees who are Sales Agents.  
 ```
@@ -30,25 +33,32 @@ SELECT Employee.FirstName || " " || Employee.LastName AS Name, Employee.Title FR
 WHERE Employee.Title IS "Sales Support Agent"
 ORDER BY Name DESC;
 ```
+3 rows returned
 
 1. Provide a query showing a unique list of billing countries from the Invoice table.  
 ```
 SELECT Invoice.BillingCountry FROM Invoice
 GROUP BY Invoice.BillingCountry;
 ```
+24 rows returned
 
-1. Provide a query showing the invoices of customers who are from Brazil.      <!-- Wasn't sure if supposed to incude ALL columns (which his returns) -->
+1. Provide a query showing the invoices of customers who are from Brazil.      <!-- Wasn't sure if supposed to include ALL data (which his returns)  => "SELECT Invoice.* FROM Invoice" to only get back the Invoice data-->
 ```
-SELECT * FROM Invoice
+SELECT * FROM Invoice           
 JOIN Customer ON Invoice.CustomerId = Customer.CustomerId
 WHERE Customer.Country IS "Brazil"
 ORDER BY Invoice.CustomerId ASC;
 ```
+35 rows returned
 
 1. Provide a query that shows the invoices associated with each sales agent. The resultant table should include the Sales Agent's full name.  
 ```
-
+SELECT Employee.FirstName || " " || Employee.LastName AS EmpFullName, Customer.FirstName || " " || Customer.LastName AS CustFullName, Invoice.* FROM Invoice
+JOIN Customer ON Invoice.CustomerId = Customer.CustomerId
+JOIN Employee ON Customer.SupportRepId = Employee.EmployeeId
+ORDER BY EmpFullName, Customer.CustomerId;
 ```
+412 rows returned
 
 1. Provide a query that shows the Invoice Total, Customer name, Country and Sale Agent name for all invoices and customers.  
 ```
