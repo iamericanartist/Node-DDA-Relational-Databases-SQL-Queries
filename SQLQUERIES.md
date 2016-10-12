@@ -11,7 +11,9 @@ ORDER BY Customer.Country, Customer.CustomerId ASC;
 
 1. Provide a query only showing the Customers from Brazil. <!-- Tested with Customer.Country first  -->
 ```
-
+SELECT Customer.FirstName || " " || Customer.LastName AS Name FROM Customer
+WHERE Customer.Country IS "Brazil"
+ORDER BY Name ASC;
 ```
 
 1. Provide a query showing the Invoices of customers who are from Brazil. The resultant table should show the customer's full name, Invoice ID, Date of the invoice and billing country.  
