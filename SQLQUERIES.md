@@ -7,7 +7,7 @@
 SELECT Customer.FirstName || " " || Customer.LastName AS Name, Customer.CustomerId, Customer.Country FROM Customer
 WHERE Customer.Country IS NOT "USA"
 ORDER BY Customer.Country, Customer.CustomerId ASC;
-```id
+```
 46 rows returned / 3 cols
 
 1. Provide a query only showing the Customers from Brazil.            <!-- Tested with Customer.Country first  -->
