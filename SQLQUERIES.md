@@ -9,7 +9,7 @@ WHERE Customer.Country IS NOT "USA"
 ORDER BY Customer.Country, Customer.CustomerId ASC;
 ```id
 
-1. Provide a query only showing the Customers from Brazil. <!-- Tested with Customer.Country first  -->
+1. Provide a query only showing the Customers from Brazil.            <!-- Tested with Customer.Country first  -->
 ```
 SELECT Customer.FirstName || " " || Customer.LastName AS Name FROM Customer
 WHERE Customer.Country IS "Brazil"
@@ -37,9 +37,12 @@ SELECT Invoice.BillingCountry FROM Invoice
 GROUP BY Invoice.BillingCountry;
 ```
 
-1. Provide a query showing the invoices of customers who are from Brazil.  
+1. Provide a query showing the invoices of customers who are from Brazil.      <!-- Wasn't sure if supposed to incude ALL columns (which his returns) -->
 ```
-
+SELECT * FROM Invoice
+JOIN Customer ON Invoice.CustomerId = Customer.CustomerId
+WHERE Customer.Country IS "Brazil"
+ORDER BY Invoice.CustomerId ASC;
 ```
 
 1. Provide a query that shows the invoices associated with each sales agent. The resultant table should include the Sales Agent's full name.  
