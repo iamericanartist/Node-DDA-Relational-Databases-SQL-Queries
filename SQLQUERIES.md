@@ -26,7 +26,9 @@ ORDER BY Invoice.InvoiceDate ASC;
 
 1. Provide a query showing only the Employees who are Sales Agents.  
 ```
-
+SELECT Employee.FirstName || " " || Employee.LastName AS Name, Employee.Title FROM Employee
+WHERE Employee.Title IS "Sales Support Agent"
+ORDER BY Name DESC;
 ```
 
 1. Provide a query showing a unique list of billing countries from the Invoice table.  
