@@ -61,9 +61,14 @@ ORDER BY EmpFullName, Customer.CustomerId;
 412 rows returned
 
 **8 Provide a query that shows the Invoice Total, Customer name, Country and Sale Agent name for all invoices and customers.**  
+<!-- CUSTOMER FULL NAME + SALES AGENT FULL NAME + COUNTRY + SUM(INVOICE TOTAL) -->
 ```
-
+SELECT Customer.FirstName || " " || Customer.LastName AS CustFullName, Employee.FirstName || " " || Employee.LastName AS EmpFullName, Invoice.*, Customer.Country, Customer.CustomerId, SUM(Invoice.Total) AS Total FROM Invoice
+JOIN Customer ON Invoice.CustomerId = Customer.CustomerId
+JOIN Employee ON Customer.SupportRepId = Employee.EmployeeId
+GROUP BY Customer.CustomerId
 ```
+59 rows returned / 14 cols
 
 **9 How many Invoices were there in 2009 and 2011? What are the respective total sales for each of those years?**  
 ```
