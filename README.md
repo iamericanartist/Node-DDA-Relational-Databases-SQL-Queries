@@ -2,7 +2,7 @@
 Node / Database Driven Application / SQL / Database Queries
 
 ![SQL Example](databaseSQL.jpg?raw=true "SQL Example Screenshot")
-
+[Click here for my solutions](/SQLQUERIES.md)
 
 ## Talking to a Database  
 #### Requirements  
@@ -41,6 +41,9 @@ Use the [Chinook Database](https://chinookdatabase.codeplex.com/) and the [DB Br
 27. Provide a query that shows the most purchased Media Type.
 
 
+
+![SQL Query Example](queryEx.jpg?raw=true "SQL Example Screenshot")  
+
 ***
 #### Notes/Resources
 ###### SQL Statements
@@ -69,3 +72,5 @@ Use the [Chinook Database](https://chinookdatabase.codeplex.com/) and the [DB Br
 * [SQL Cheatsheet](https://zeroturnaround.com/wp-content/uploads/2016/06/RebelLabs-SQL-cheat-sheet.png)
 * http://www.sqlite.org/lang_select.html
 * https://www.sololearn.com/Course/SQL/
+
+
