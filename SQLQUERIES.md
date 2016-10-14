@@ -71,39 +71,53 @@ GROUP BY Customer.CustomerId
 59 rows returned / 14 cols
 
 **9 How many Invoices were there in 2009 and 2011? What are the respective total sales for each of those years?**  
-<!-- INVOICES > 2009 / SALES TOTAL 2009 / 2011 / SALES TOTAL 2011  -->
+<!-- INVOICES > 2009 / SALES TOTAL 2009 / 2011 / SALES TOTAL 2011  --> 3 separate answers needed in SQLite
 ```
 SELECT * FROM Invoice
 WHERE Invoice.InvoiceDate LIKE '2009%' OR Invoice.InvoiceDate LIKE '2011%';
 ```
+166 rows returned 
 ```
 SELECT SUM(Total) AS '2009 Total' FROM Invoice 
 WHERE Invoice.InvoiceDate LIKE '2009%';
 ```
+1 rows returned
 ```
 SELECT SUM(Total) AS '2011 Total' FROM Invoice 
 WHERE Invoice.InvoiceDate LIKE '2011%';
 ```
+1 rows returned
 
-**10 Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for Invoice ID 37.**  
+**10 Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for Invoice ID 37.**
 ```
-
+SELECT COUNT(InvoiceLine.InvoiceId) AS InvoiceCount FROM InvoiceLine Where InvoiceLine.InvoiceId = 37
 ```
+1 rows returned
 
 **11 Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for each Invoice.** HINT: [GROUP BY](http://www.sqlite.org/lang_select.html#resultset)  
 ``` 
-
+SELECT InvoiceLine.InvoiceLineId, COUNT(InvoiceLine.InvoiceId) AS InvoiceCount FROM InvoiceLine
+GROUP BY InvoiceLine.InvoiceId
 ```
+412 rows returned
 
 **12 Provide a query that includes the track name with each invoice line item.**  
 ```
-
+SELECT InvoiceLine.InvoiceLineId, Track.Name FROM InvoiceLine
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
+ORDER BY InvoiceLine.InvoiceId;
 ```
+2240 rows returned
 
 **13 Provide a query that includes the purchased track name AND artist name with each invoice line item.**  
 ```
-
+SELECT InvoiceLine.InvoiceLineId, Artist.Name AS "Artist", Track.Name AS "TrackName" FROM InvoiceLine
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
+JOIN Album ON Track.AlbumId = Album.AlbumId
+JOIN Artist ON Album.ArtistId = Artist.ArtistId
+ORDER BY InvoiceLine.InvoiceId;
 ```
+2240 rows returned / 3 cols
 
 **14 Provide a query that shows the # of invoices per country.** HINT: [GROUP BY](http://www.sqlite.org/lang_select.html#resultset)  
 ```
