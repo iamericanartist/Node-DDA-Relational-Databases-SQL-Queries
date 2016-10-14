@@ -66,7 +66,7 @@ ORDER BY EmpFullName, Customer.CustomerId;
 SELECT Customer.FirstName || " " || Customer.LastName AS CustFullName, Employee.FirstName || " " || Employee.LastName AS EmpFullName, Invoice.*, Customer.Country, Customer.CustomerId, SUM(Invoice.Total) AS Total FROM Invoice
 JOIN Customer ON Invoice.CustomerId = Customer.CustomerId
 JOIN Employee ON Customer.SupportRepId = Employee.EmployeeId
-GROUP BY Customer.CustomerId
+GROUP BY Customer.CustomerId;
 ```
 59 rows returned / 14 cols
 
@@ -90,14 +90,14 @@ WHERE Invoice.InvoiceDate LIKE '2011%';
 
 **10 Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for Invoice ID 37.**
 ```
-SELECT COUNT(InvoiceLine.InvoiceId) AS InvoiceCount FROM InvoiceLine Where InvoiceLine.InvoiceId = 37
+SELECT COUNT(InvoiceLine.InvoiceId) AS InvoiceCount FROM InvoiceLine Where InvoiceLine.InvoiceId = 37;
 ```
 1 rows returned
 
 **11 Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for each Invoice.** HINT: [GROUP BY](http://www.sqlite.org/lang_select.html#resultset)  
 ``` 
 SELECT InvoiceLine.InvoiceLineId, COUNT(InvoiceLine.InvoiceId) AS InvoiceCount FROM InvoiceLine
-GROUP BY InvoiceLine.InvoiceId
+GROUP BY InvoiceLine.InvoiceId;
 ```
 412 rows returned
 
@@ -121,16 +121,18 @@ ORDER BY InvoiceLine.InvoiceId;
 
 **14 Provide a query that shows the # of invoices per country.** HINT: [GROUP BY](http://www.sqlite.org/lang_select.html#resultset)  
 ```
-
+SELECT Invoice.BillingCountry, SUM(Invoice.Total) AS "Total Invoices" FROM Invoice
+GROUP BY Invoice.BillingCountry;
 ```
+24 rows returned / 2 cols
 
 **15 Provide a query that shows the total number of tracks in each playlist. The Playlist name should be included on the resultant table.**  
 ```
 SELECT Playlist.Name AS "Playlist Name", COUNT(PlaylistTrack.TrackId) AS "Total Tracks" FROM PlaylistTrack
 JOIN Playlist ON PlaylistTrack.PlaylistId = Playlist.PlaylistId
-GROUP BY Playlist.Name
+GROUP BY Playlist.Name;
 ```
-12 rows returned
+12 rows returned / 2 cols
 
 **16 Provide a query that shows all the Tracks, but displays no IDs. The resultant table should include the Album name, Media type and Genre.**  
 ```
