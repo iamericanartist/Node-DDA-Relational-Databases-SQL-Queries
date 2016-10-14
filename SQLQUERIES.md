@@ -71,8 +71,18 @@ GROUP BY Customer.CustomerId
 59 rows returned / 14 cols
 
 **9 How many Invoices were there in 2009 and 2011? What are the respective total sales for each of those years?**  
+<!-- INVOICES > 2009 / SALES TOTAL 2009 / 2011 / SALES TOTAL 2011  -->
 ```
-
+SELECT * FROM Invoice
+WHERE Invoice.InvoiceDate LIKE '2009%' OR Invoice.InvoiceDate LIKE '2011%';
+```
+```
+SELECT SUM(Total) AS '2009 Total' FROM Invoice 
+WHERE Invoice.InvoiceDate LIKE '2009%';
+```
+```
+SELECT SUM(Total) AS '2011 Total' FROM Invoice 
+WHERE Invoice.InvoiceDate LIKE '2011%';
 ```
 
 **10 Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for Invoice ID 37.**  
