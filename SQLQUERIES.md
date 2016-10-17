@@ -142,13 +142,16 @@
 > JOIN Genre ON Track.GenreId = Genre.GenreId
 > ORDER BY Album.Title
 > ```
-> 3503 rows returned
+> 3503 rows returned /4 cols
 
 **17 Provide a query that shows all Invoices but includes the # of invoice line items.**  
 > ```
-> 
+> SELECT Invoice.InvoiceId, Invoice.CustomerId, COUNT(InvoiceLine.InvoiceLineId) AS "# Line Items" FROM Invoice 
+> JOIN InvoiceLine ON Invoice.InvoiceId = InvoiceLine.InvoiceId 
+> GROUP BY Invoice.InvoiceId;
 > ```
-> 
+> 412 rows returned / 3 cols
+
 **18 Provide a query that shows total sales made by each sales agent.**  
 > ```
 > 
