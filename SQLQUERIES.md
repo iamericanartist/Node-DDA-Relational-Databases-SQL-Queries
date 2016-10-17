@@ -186,9 +186,13 @@
 
 **21 Which sales agent made the most in sales over all?**  
 > ```
-> 
+> SELECT Employee.Title, Employee.FirstName || " " || Employee.LastName AS "Employee Name", SUM(Invoice.Total) AS "Total Rep Sales" From Employee
+> JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+> JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
+> GROUP BY "Employee Name"
+> ORDER BY "Total Rep Sales" DESC LIMIT 1;
 > ```
-> 
+> 1 rows returned / 3 cols (Jane Peacock with 833.040000000002)
 
 **22 Provide a query that shows the # of customers assigned to each sales agent.**  
 > ```
