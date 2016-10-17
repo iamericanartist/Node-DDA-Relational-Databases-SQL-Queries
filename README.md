@@ -10,7 +10,7 @@ Use the [Chinook Database](https://chinookdatabase.codeplex.com/) and the [DB Br
 
 *** 
 ##### For each of the following exercises, provide the appropriate query.
-##### See results queries in `SQLQUERIES.md` file.
+##### [See results queries in `SQLQUERIES.md` file.](/SQLQUERIES.md)
 
 1. Provide a query showing Customers (just their full names, customer ID and country) who are not in the US.
 2. Provide a query only showing the Customers from Brazil.
