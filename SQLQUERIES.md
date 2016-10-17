@@ -154,15 +154,24 @@
 
 **18 Provide a query that shows total sales made by each sales agent.**  
 > ```
-> 
+> SELECT Employee.FirstName || " " || Employee.LastName AS "Employee Name", Count(Invoice.Total) AS "Total Employee Sales" From Employee
+> JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+> JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
+> WHERE Title = "Sales Support Agent"
+> GROUP BY "Employee Name";
 > ```
-> 
+> 3 rows returned / 2 cols
 
 **19 Which sales agent made the most in sales in 2009?**  
 > ```
-> 
+> SELECT Employee.Title, Employee.FirstName || " " || Employee.LastName AS "Employee Name", SUM(Invoice.Total) AS "Total Rep Sales" From Employee
+> JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+> JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
+> WHERE Invoice.InvoiceDate LIKE "2009%"
+> GROUP BY "Employee Name"
+> ORDER BY "Total Rep Sales" DESC LIMIT 1;
 > ```
-> 
+> 1 rows returned
 
 **20 Which sales agent made the most in sales in 2010?**  
 > ```
