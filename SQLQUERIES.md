@@ -224,18 +224,33 @@
 
 **25 Provide a query that shows the top 5 most purchased tracks over all.**  
 > ```
-> 
+> SELECT Track.Name AS "Track Name", SUM(InvoiceLine.TrackId) AS "Most Purchased" FROM Track
+> JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId
+> JOIN Invoice ON InvoiceLine.InvoiceId = Invoice.InvoiceId
+> GROUP BY "Track Name"
+> ORDER BY "Most Purchased" DESC LIMIT 5;
 > ```
-> 
+> 5 rows returned / 2 cols
 
 **26 Provide a query that shows the top 3 best selling artists.**  
 > ```
-> 
+> SELECT Artist.Name AS "Artist", SUM(InvoiceLine.TrackId) AS "Tracks Purchased" FROM Track
+> JOIN Album ON Track.AlbumId = Album.AlbumId 
+> JOIN Artist ON Album.ArtistId = Artist.ArtistId
+> JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId
+> JOIN Invoice ON InvoiceLine.InvoiceId = Invoice.InvoiceId
+> GROUP BY Artist.Name
+> ORDER BY "Tracks Purchased" DESC LIMIT 3;
 > ```
-> 
+> 3 rows returned / 2 cols
 
 **27 Provide a query that shows the most purchased Media Type.**  
 > ```
-> 
+> SELECT MediaType.Name AS "Media Type", SUM(InvoiceLine.TrackId) AS "Tracks Purchased" FROM Track
+> JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId
+> JOIN Invoice ON InvoiceLine.InvoiceId = Invoice.InvoiceId
+> JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId
+> GROUP BY MediaType.Name
+> ORDER BY "Tracks Purchased" DESC LIMIT 1;
 > ```
-> 
+> 1 rows returned / 2 cols (MPEG audio file with 3093401)
