@@ -224,9 +224,13 @@
 
 **25 Provide a query that shows the top 5 most purchased tracks over all.**  
 > ```
-> 
+> SELECT Track.Name AS "Track Name", SUM(InvoiceLine.TrackId) AS "Most Purchased" FROM Track
+> JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId
+> JOIN Invoice ON InvoiceLine.InvoiceId = Invoice.InvoiceId
+> GROUP BY "Track Name"
+> ORDER BY "Most Purchased" DESC LIMIT 5;
 > ```
-> 
+> 5 rows returned / 2 cols
 
 **26 Provide a query that shows the top 3 best selling artists.**  
 > ```
