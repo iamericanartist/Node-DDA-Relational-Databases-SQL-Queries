@@ -1,8 +1,8 @@
 # SQL-Queries
 Node / Database Driven Application / SQL / Database Queries
 
-![SQL Example](databaseSQL.jpg?raw=true "SQL Example Screenshot")
 [Click here for my solutions](/SQLQUERIES.md)
+![SQL Example](databaseSQL.jpg?raw=true "SQL Example Screenshot")
 
 ## Talking to a Database  
 #### Requirements  
