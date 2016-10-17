@@ -205,15 +205,22 @@
 
 **23 Provide a query that shows the total sales per country. Which country's customers spent the most?**  
 > ```
-> 
+> SELECT Invoice.BillingCountry AS "Country", SUM(Invoice.Total) AS "Total Country Sales" FROM Invoice
+> GROUP BY Invoice.BillingCountry
+> ORDER BY "Total Country Sales" DESC LIMIT 1;
 > ```
-> 
+> 1 rows returned / 2 cols (USA with 523.06)
 
-**24 Provide a query that shows the most purchased track of 2023.**  
+**24 Provide a query that shows the most purchased track of 2013.**  
 > ```
-> 
+> SELECT Track.Name AS "Track Name", SUM(InvoiceLine.TrackId) AS "Most Purchased" FROM Track
+> JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId
+> JOIN Invoice ON InvoiceLine.InvoiceId = Invoice.InvoiceId
+> WHERE Invoice.InvoiceDate LIKE "2013%"
+> GROUP BY "Track Name"
+> ORDER BY "Most Purchased" DESC;
 > ```
-> 
+> 1 rows returned / 2 cols (Eruption with 6146)
 
 **25 Provide a query that shows the top 5 most purchased tracks over all.**  
 > ```
