@@ -171,13 +171,18 @@
 > GROUP BY "Employee Name"
 > ORDER BY "Total Rep Sales" DESC LIMIT 1;
 > ```
-> 1 rows returned
+> 1 rows returned / 3 cols (Steve Johnson with 164.34)
 
 **20 Which sales agent made the most in sales in 2010?**  
 > ```
-> 
+> SELECT Employee.Title, Employee.FirstName || " " || Employee.LastName AS "Employee Name", SUM(Invoice.Total) AS "Total Rep Sales" From Employee
+> JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+> JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
+> WHERE Invoice.InvoiceDate LIKE "2010%"
+> GROUP BY "Employee Name"
+> ORDER BY "Total Rep Sales" DESC LIMIT 1;
 > ```
-> 
+> 1 rows returned / 3 cols (Jane Peacock with 221.92)
 
 **21 Which sales agent made the most in sales over all?**  
 > ```
