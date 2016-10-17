@@ -154,7 +154,7 @@
 
 **18 Provide a query that shows total sales made by each sales agent.**  
 > ```
-> SELECT Employee.FirstName || " " || Employee.LastName AS "Employee Name", Count(Invoice.Total) AS "Total Employee Sales" From Employee
+> SELECT Employee.FirstName || " " || Employee.LastName AS "Employee Name", Count(Invoice.Total) AS "Total Employee Sales" FROM Employee
 > JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
 > JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
 > WHERE Title = "Sales Support Agent"
@@ -164,7 +164,7 @@
 
 **19 Which sales agent made the most in sales in 2009?**  
 > ```
-> SELECT Employee.Title, Employee.FirstName || " " || Employee.LastName AS "Employee Name", SUM(Invoice.Total) AS "Total Rep Sales" From Employee
+> SELECT Employee.Title, Employee.FirstName || " " || Employee.LastName AS "Employee Name", SUM(Invoice.Total) AS "Total Rep Sales" FROM Employee
 > JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
 > JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
 > WHERE Invoice.InvoiceDate LIKE "2009%"
@@ -175,7 +175,7 @@
 
 **20 Which sales agent made the most in sales in 2010?**  
 > ```
-> SELECT Employee.Title, Employee.FirstName || " " || Employee.LastName AS "Employee Name", SUM(Invoice.Total) AS "Total Rep Sales" From Employee
+> SELECT Employee.Title, Employee.FirstName || " " || Employee.LastName AS "Employee Name", SUM(Invoice.Total) AS "Total Rep Sales" FROM Employee
 > JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
 > JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
 > WHERE Invoice.InvoiceDate LIKE "2010%"
@@ -186,27 +186,41 @@
 
 **21 Which sales agent made the most in sales over all?**  
 > ```
-> 
+> SELECT Employee.Title, Employee.FirstName || " " || Employee.LastName AS "Employee Name", SUM(Invoice.Total) AS "Total Rep Sales" FROM Employee
+> JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+> JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId
+> GROUP BY "Employee Name"
+> ORDER BY "Total Rep Sales" DESC LIMIT 1;
 > ```
-> 
+> 1 rows returned / 3 cols (Jane Peacock with 833.040000000002)
 
 **22 Provide a query that shows the # of customers assigned to each sales agent.**  
 > ```
-> 
+> SELECT SUM(Customer.SupportRepId) AS "Total Customers", Employee.Title, Employee.FirstName || " " || Employee.LastName AS "Employee Name" FROM Employee
+> SJOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+> SGROUP BY Customer.SupportRepId
+> SORDER BY "Total Customers" DESC;
 > ```
-> 
+> 3 rows returned / 3 cols
 
 **23 Provide a query that shows the total sales per country. Which country's customers spent the most?**  
 > ```
-> 
+> SELECT Invoice.BillingCountry AS "Country", SUM(Invoice.Total) AS "Total Country Sales" FROM Invoice
+> GROUP BY Invoice.BillingCountry
+> ORDER BY "Total Country Sales" DESC LIMIT 1;
 > ```
-> 
+> 1 rows returned / 2 cols (USA with 523.06)
 
-**24 Provide a query that shows the most purchased track of 2023.**  
+**24 Provide a query that shows the most purchased track of 2013.**  
 > ```
-> 
+> SELECT Track.Name AS "Track Name", SUM(InvoiceLine.TrackId) AS "Most Purchased" FROM Track
+> JOIN InvoiceLine ON Track.TrackId = InvoiceLine.TrackId
+> JOIN Invoice ON InvoiceLine.InvoiceId = Invoice.InvoiceId
+> WHERE Invoice.InvoiceDate LIKE "2013%"
+> GROUP BY "Track Name"
+> ORDER BY "Most Purchased" DESC;
 > ```
-> 
+> 1 rows returned / 2 cols (Eruption with 6146)
 
 **25 Provide a query that shows the top 5 most purchased tracks over all.**  
 > ```
